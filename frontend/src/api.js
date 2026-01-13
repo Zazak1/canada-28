@@ -5,8 +5,8 @@ export const fetchGameStatus = async () => {
     return res.json();
 };
 
-export const fetchHistory = async () => {
-    const res = await fetch(`${API_BASE}/api/history`);
+export const fetchHistory = async (limit = 100) => {
+    const res = await fetch(`${API_BASE}/api/history?limit=${limit}`);
     return res.json();
 };
 
@@ -33,7 +33,7 @@ export const fetchSystemStatus = async () => {
     return res.json();
 };
 
-export const fetchAlgorithmHistory = async (algoId, limit = 20) => {
+export const fetchAlgorithmHistory = async (algoId, limit = 100) => {
     const res = await fetch(`${API_BASE}/api/algorithm/${algoId}/history?limit=${limit}`);
     return res.json();
 };

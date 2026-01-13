@@ -102,7 +102,7 @@ def create_app():
         Returns prediction history and stats for a specific algorithm.
         """
         from services.predictor import get_algorithm_history
-        limit = int(request.args.get('limit', 20))
+        limit = int(request.args.get('limit', 100))
         data = get_algorithm_history(algo_id, limit)
         return jsonify(data)
 
@@ -119,7 +119,7 @@ def create_app():
     def history():
         from models import LotteryRecord, Prediction
         page = int(request.args.get('page', 1))
-        per_page = int(request.args.get('limit', 20))
+        per_page = int(request.args.get('limit', 100))
 
         # Ensure we have fresh data when the system just started
         if LotteryRecord.query.count() == 0:
