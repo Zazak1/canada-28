@@ -115,6 +115,24 @@ def create_app():
         stats = get_all_algorithm_stats()
         return jsonify(stats)
 
+    @app.route('/api/query/<issue>')
+    def query_issue(issue):
+        """
+        根据期号查询开奖结果
+        """
+        from models import LotteryRecord
+        record = LotteryRecord.query.filter_by(issue=issue).first()
+        if record:
+            return jsonify({
+                "success": True,
+                "data": record.to_dict()
+            })
+        else:
+            return jsonify({
+                "success": False,
+                "message": f"未找到期号 {issue} 的记录"
+            }), 404
+
     @app.route('/api/history')
     def history():
         from models import LotteryRecord, Prediction

@@ -42,3 +42,8 @@ export const fetchAlgorithmsStats = async () => {
     const res = await fetch(`${API_BASE}/api/algorithms/stats`);
     return res.json();
 };
+
+export const queryIssue = async (issue) => {
+    const res = await fetch(`${API_BASE}/api/query/${issue}`);
+    return res.json();
+};
